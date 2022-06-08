@@ -7,7 +7,9 @@ import 'package:intl/intl.dart';
 import 'package:online_course_app/constants/app_constants.dart';
 import 'package:online_course_app/ui/theme/colors.dart';
 import 'package:online_course_app/ui/widgets/category_box.dart';
+import 'package:online_course_app/ui/widgets/feature_item.dart';
 import 'package:online_course_app/ui/widgets/notification_box.dart';
+import 'package:online_course_app/ui/widgets/recommend_item.dart';
 import 'package:online_course_app/utils/data.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,7 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            NotificationBox(),
+            NotificationBox(
+              notificationNumber: 2,
+            ),
           ],
         ),
       ),
@@ -82,6 +86,18 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           buildFeatures(),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 20),
+            child: Text(
+              "Recommended",
+              style: TextStyle(
+                color: textColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 22,
+              ),
+            ),
+          ),
+          buildRecommends(),
         ],
       ),
     );
@@ -103,66 +119,56 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget buildFeatures() {
-    return CarouselSlider(
-        items: [
-          Container(
-            width: 270,
-            height: 290,
-            margin: EdgeInsets.symmetric(vertical: 5),
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: shadowColor.withOpacity(.1),
-                    spreadRadius: 1,
-                    blurRadius: 1,
-                    offset: Offset(1, 1),
-                  )
-                ]),
-            child: Stack(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  height: 200,
-                  child: CachedNetworkImage(
-                    imageUrl: features[0]["image"],
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 180,
-                  right: 15,
-                  child: Container(
-                    padding: EdgeInsets.all(10),
-                    decoration: BoxDecoration(
-                        color: primary,
-                        borderRadius: BorderRadius.circular(20)),
-                    child: Text(
-                      features[0]["price"],
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  child: Text("asdasdasdasd"),
-                )
-              ],
+  Widget buildRecommends() {
+    return SingleChildScrollView(
+      padding: EdgeInsets.only(left: 15),
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: List.generate(
+          recommends.length,
+          (index) => Container(
+            margin: EdgeInsets.only(right: 15, bottom: 5),
+            child: RecommendItem(
+              data: recommends[index],
+              onTap: () {
+                print(index);
+              },
             ),
           ),
-        ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildAttributeBox(String info, IconData icon, Color iconColor) {
+    return Row(
+      children: [
+        Icon(
+          icon,
+          size: 18,
+          color: iconColor,
+        ),
+        const SizedBox(
+          width: 3,
+        ),
+        Text(
+          info,
+          style: const TextStyle(color: labelColor, fontSize: 13),
+        ),
+      ],
+    );
+  }
+
+  Widget buildFeatures() {
+    return CarouselSlider(
+        items: List.generate(
+            features.length,
+            (index) => FeatureItem(
+                  data: features[index],
+                  onTap: () {
+                    print(index);
+                  },
+                )),
         options: CarouselOptions(
             height: 290, enlargeCenterPage: true, disableCenter: true));
   }
