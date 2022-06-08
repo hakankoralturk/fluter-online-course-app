@@ -32,38 +32,36 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppBar(
       backgroundColor: appBarColor,
       elevation: 0,
-      title: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
-                  "Hakan KORALTÜRK",
-                  style: TextStyle(
-                    color: labelColor,
-                    fontSize: 14,
-                  ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: const [
+              Text(
+                "Hakan KORALTÜRK",
+                style: TextStyle(
+                  color: labelColor,
+                  fontSize: 14,
                 ),
-                SizedBox(
-                  height: 5,
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                "Günaydın",
+                style: TextStyle(
+                  color: textColor,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
                 ),
-                Text(
-                  "Günaydın",
-                  style: TextStyle(
-                    color: textColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-            NotificationBox(
-              notificationNumber: 2,
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+          NotificationBox(
+            notificationNumber: 2,
+          ),
+        ],
       ),
     );
   }
@@ -121,13 +119,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget buildRecommends() {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 15),
+      padding: const EdgeInsets.only(left: 15),
       scrollDirection: Axis.horizontal,
       child: Row(
         children: List.generate(
           recommends.length,
           (index) => Container(
-            margin: EdgeInsets.only(right: 15, bottom: 5),
+            margin: const EdgeInsets.only(right: 15, bottom: 5),
             child: RecommendItem(
               data: recommends[index],
               onTap: () {
