@@ -58,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          NotificationBox(
+          const NotificationBox(
             notificationNumber: 2,
           ),
         ],
@@ -73,7 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           buildCategories(),
           const Padding(
-            padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 10),
             child: Text(
               "Featured",
               style: TextStyle(
@@ -84,15 +84,24 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           buildFeatures(),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(15, 15, 15, 20),
-            child: Text(
-              "Recommended",
-              style: TextStyle(
-                color: textColor,
-                fontWeight: FontWeight.w600,
-                fontSize: 22,
-              ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(15, 25, 15, 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                Text(
+                  "Recommended",
+                  style: TextStyle(
+                    color: textColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22,
+                  ),
+                ),
+                Text(
+                  "See all",
+                  style: TextStyle(color: labelColor, fontSize: 14),
+                )
+              ],
             ),
           ),
           buildRecommends(),

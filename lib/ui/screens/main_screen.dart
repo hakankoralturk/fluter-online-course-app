@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:online_course_app/ui/screens/explore_screen.dart';
 import 'package:online_course_app/ui/screens/home_screen.dart';
 import 'package:online_course_app/ui/theme/colors.dart';
 import 'package:online_course_app/constants/app_constants.dart';
@@ -21,11 +22,7 @@ class _MainScreenState extends State<MainScreen> {
     },
     {
       "icon": AppConstants.bottomBarIcon_02,
-      "page": Container(
-        child: Center(
-          child: Text("Search"),
-        ),
-      )
+      "page": ExploreScreen(),
     },
     {
       "icon": AppConstants.bottomBarIcon_03,

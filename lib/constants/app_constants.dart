@@ -6,6 +6,9 @@ class AppConstants {
   static const bottomBarIcon_05 = "assets/icons/profile.svg";
 
   static const appBarBellIcon = "assets/icons/bell.svg";
+  static const searchIcon = "assets/icons/search.svg";
+  static const searchFilterIcon = "assets/icons/filter.svg";
+  static const bookmarkIcon = "assets/icons/bookmark.svg";
 
   static const categoryAll = "assets/icons/category/all.svg";
   static const categoryArt = "assets/icons/category/art.svg";
